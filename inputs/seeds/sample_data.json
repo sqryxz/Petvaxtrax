@@ -1,0 +1,282 @@
+{
+  "version": "1.0",
+  "description": "Sample pet data for PetVaxHK demo and testing",
+  "locale": "en",
+  "pets": [
+    {
+      "id": "pet_sample_001",
+      "name": "Mochi",
+      "species": "dog",
+      "breed": "Golden Retriever",
+      "date_of_birth": "2020-03-15",
+      "sex": "female",
+      "colour": "golden",
+      "microchip_number": "900001000000001",
+      "owner_name": "John Smith",
+      "owner_phone": "9123 4567",
+      "owner_email": "john.smith@example.com",
+      "registration_number": "RNG202000123",
+      "date_registered": "2020-04-01"
+    },
+    {
+      "id": "pet_sample_002",
+      "name": "Shadow",
+      "species": "cat",
+      "breed": "British Shorthair",
+      "date_of_birth": "2021-06-20",
+      "sex": "male",
+      "colour": "grey",
+      "microchip_number": "900001000000002",
+      "owner_name": "Mary Wong",
+      "owner_phone": "9876 5432",
+      "owner_email": "mary.wong@example.com",
+      "registration_number": "RNG202100456",
+      "date_registered": "2021-07-15"
+    },
+    {
+      "id": "pet_sample_003",
+      "name": "Max",
+      "species": "dog",
+      "breed": "Poodle (Standard)",
+      "date_of_birth": "2019-11-10",
+      "sex": "male",
+      "colour": "white",
+      "microchip_number": "900001000000003",
+      "owner_name": "David Lee",
+      "owner_phone": "9101 1122",
+      "owner_email": "david.lee@example.com",
+      "registration_number": "RNG201900789",
+      "date_registered": "2019-12-05"
+    },
+    {
+      "id": "pet_sample_004",
+      "name": "Luna",
+      "species": "cat",
+      "breed": "Scottish Fold",
+      "date_of_birth": "2022-02-28",
+      "sex": "female",
+      "colour": "cream",
+      "microchip_number": "900001000000004",
+      "owner_name": "Sarah Chen",
+      "owner_phone": "9333 4444",
+      "owner_email": "sarah.chen@example.com",
+      "registration_number": "RNG202200111",
+      "date_registered": "2022-03-20"
+    },
+    {
+      "id": "pet_sample_005",
+      "name": "Buddy",
+      "species": "dog",
+      "breed": "Labrador Retriever",
+      "date_of_birth": "2018-08-12",
+      "sex": "male",
+      "colour": "black",
+      "microchip_number": "900001000000005",
+      "owner_name": "James Liu",
+      "owner_phone": "9555 6666",
+      "owner_email": "james.liu@example.com",
+      "registration_number": "RNG201800222",
+      "date_registered": "2018-09-01"
+    }
+  ],
+  "vaccinations": [
+    {
+      "pet_id": "pet_sample_001",
+      "vaccine_type": "Rabies",
+      "vaccine_name": "Nobivac Rabies",
+      "date_administered": "2025-03-01",
+      "date_due_next": "2026-03-01",
+      "batch_number": "RAB2025001",
+      "vet_clinic_id": "clinic_sample_001",
+      "administered_by": "Dr. Peter Ho",
+      "notes": "Annual rabies vaccination"
+    },
+    {
+      "pet_id": "pet_sample_001",
+      "vaccine_type": "DHPP",
+      "vaccine_name": "Nobivac DHPP",
+      "date_administered": "2025-03-01",
+      "date_due_next": "2026-03-01",
+      "batch_number": "DHPP2025001",
+      "vet_clinic_id": "clinic_sample_001",
+      "administered_by": "Dr. Peter Ho",
+      "notes": "Combined distemper, hepatitis, parvo, parainfluenza"
+    },
+    {
+      "pet_id": "pet_sample_001",
+      "vaccine_type": "Leptospirosis",
+      "vaccine_name": "Nobivac Lepto",
+      "date_administered": "2025-03-01",
+      "date_due_next": "2026-03-01",
+      "batch_number": "LEP2025001",
+      "vet_clinic_id": "clinic_sample_001",
+      "administered_by": "Dr. Peter Ho"
+    },
+    {
+      "pet_id": "pet_sample_002",
+      "vaccine_type": "Rabies",
+      "vaccine_name": "Nobivac Rabies",
+      "date_administered": "2025-06-15",
+      "date_due_next": "2026-06-15",
+      "batch_number": "RAB2025015",
+      "vet_clinic_id": "clinic_sample_002",
+      "administered_by": "Dr. Jennifer Lam",
+      "notes": "Annual rabies vaccination"
+    },
+    {
+      "pet_id": "pet_sample_002",
+      "vaccine_type": "FVRCP",
+      "vaccine_name": "Nobivac FVRCP",
+      "date_administered": "2025-06-15",
+      "date_due_next": "2026-06-15",
+      "batch_number": "FVRCP2025015",
+      "vet_clinic_id": "clinic_sample_002",
+      "administered_by": "Dr. Jennifer Lam",
+      "notes": "Combined feline viral rhinotracheitis, calicivirus, panleukopenia"
+    },
+    {
+      "pet_id": "pet_sample_003",
+      "vaccine_type": "Rabies",
+      "vaccine_name": "Nobivac Rabies",
+      "date_administered": "2024-11-05",
+      "date_due_next": "2025-11-05",
+      "batch_number": "RAB2024012",
+      "vet_clinic_id": "clinic_sample_003",
+      "administered_by": "Dr. Michael Cheung",
+      "notes": "OVERDUE - needs revaccination"
+    },
+    {
+      "pet_id": "pet_sample_003",
+      "vaccine_type": "DHPP",
+      "vaccine_name": "Nobivac DHPP",
+      "date_administered": "2024-11-05",
+      "date_due_next": "2025-11-05",
+      "batch_number": "DHPP2024012",
+      "vet_clinic_id": "clinic_sample_003",
+      "administered_by": "Dr. Michael Cheung",
+      "notes": "OVERDUE - needs revaccination"
+    },
+    {
+      "pet_id": "pet_sample_004",
+      "vaccine_type": "Rabies",
+      "vaccine_name": "Nobivac Rabies",
+      "date_administered": "2025-02-10",
+      "date_due_next": "2026-02-10",
+      "batch_number": "RAB2025020",
+      "vet_clinic_id": "clinic_sample_001",
+      "administered_by": "Dr. Peter Ho",
+      "notes": "Due soon"
+    },
+    {
+      "pet_id": "pet_sample_004",
+      "vaccine_type": "FVRCP",
+      "vaccine_name": "Nobivac FVRCP",
+      "date_administered": "2025-02-10",
+      "date_due_next": "2026-02-10",
+      "batch_number": "FVRCP2025020",
+      "vet_clinic_id": "clinic_sample_001",
+      "administered_by": "Dr. Peter Ho"
+    },
+    {
+      "pet_id": "pet_sample_005",
+      "vaccine_type": "Rabies",
+      "vaccine_name": "Nobivac Rabies",
+      "date_administered": "2025-08-01",
+      "date_due_next": "2026-08-01",
+      "batch_number": "RAB2025030",
+      "vet_clinic_id": "clinic_sample_002",
+      "administered_by": "Dr. Jennifer Lam"
+    },
+    {
+      "pet_id": "pet_sample_005",
+      "vaccine_type": "DHPP",
+      "vaccine_name": "Nobivac DHPP",
+      "date_administered": "2025-08-01",
+      "date_due_next": "2026-08-01",
+      "batch_number": "DHPP2025030",
+      "vet_clinic_id": "clinic_sample_002",
+      "administered_by": "Dr. Jennifer Lam"
+    },
+    {
+      "pet_id": "pet_sample_005",
+      "vaccine_type": "Leptospirosis",
+      "vaccine_name": "Nobivac Lepto",
+      "date_administered": "2025-08-01",
+      "date_due_next": "2026-08-01",
+      "batch_number": "LEP2025030",
+      "vet_clinic_id": "clinic_sample_002",
+      "administered_by": "Dr. Jennifer Lam"
+    }
+  ],
+  "vet_clinics": [
+    {
+      "id": "clinic_sample_001",
+      "name": "Central Animal Hospital",
+      "address": " Queen's Road Central, Central",
+      "district": "Central & Western",
+      "phone": "2522 3333",
+      "email": "info@centralanimal.hk",
+      "hours": "24 hours",
+      "services": ["General", "Surgery", "Vaccination", "Emergency"]
+    },
+    {
+      "id": "clinic_sample_002",
+      "name": "Kowloon Veterinary Clinic",
+      "address": " Nathan Road, Mong Kok",
+      "district": "Yau Tsim Mong",
+      "phone": "2333 4444",
+      "email": "info@kowloonvet.hk",
+      "hours": "09:00 - 20:00",
+      "services": ["General", "Vaccination", "Grooming"]
+    },
+    {
+      "id": "clinic_sample_003",
+      "name": "New Territories Pet Centre",
+      "address": " Sha Tin Wai Road, Sha Tin",
+      "district": "Sha Tin",
+      "phone": "2666 7777",
+      "email": "info@ntpet.hk",
+      "hours": "10:00 - 19:00",
+      "services": ["General", "Surgery", "Vaccination", "Dental"]
+    }
+  ],
+  "reminders": [
+    {
+      "pet_id": "pet_sample_001",
+      "vaccine_type": "Rabies",
+      "due_date": "2026-03-01",
+      "reminder_type": "due_soon",
+      "status": "pending",
+      "notes": "Annual rabies due in 3 days"
+    },
+    {
+      "pet_id": "pet_sample_003",
+      "vaccine_type": "Rabies",
+      "due_date": "2025-11-05",
+      "reminder_type": "overdue",
+      "status": "pending",
+      "notes": "OVERDUE - vaccination expired 3 months ago"
+    },
+    {
+      "pet_id": "pet_sample_003",
+      "vaccine_type": "DHPP",
+      "due_date": "2025-11-05",
+      "reminder_type": "overdue",
+      "status": "pending",
+      "notes": "OVERDUE - vaccination expired 3 months ago"
+    },
+    {
+      "pet_id": "pet_sample_004",
+      "vaccine_type": "Rabies",
+      "due_date": "2026-02-10",
+      "reminder_type": "due_today",
+      "status": "pending",
+      "notes": "Rabies vaccination due today"
+    }
+  ],
+  "import_instructions": {
+    "format": "json",
+    "location": "petvax/inputs/seeds/sample_data.json",
+    "how_to_import": "python -m app.cli import -f json -i inputs/seeds/sample_data.json"
+  }
+}

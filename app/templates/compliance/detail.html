@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}Compliance: {{ pet.name }} - PetVaxHK{% endblock %}
+
+{% block content %}
+<div class="container">
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('main.compliance_list') }}">Compliance</a></li>
+            <li class="breadcrumb-item active">{{ pet.name }}</li>
+        </ol>
+    </nav>
+    
+    <h1><i class="bi bi-shield-check"></i> Compliance: {{ pet.name }}</h1>
+    
+    <!-- Pet Info Card -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">Pet Information</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Name:</strong> {{ pet.name }}</p>
+                    <p><strong>Species:</strong> {{ pet.species }}</p>
+                    <p><strong>Breed:</strong> {{ pet.breed or 'Not specified' }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Date of Birth:</strong> {{ pet.date_of_birth or 'Not specified' }}</p>
+                    <p><strong>Microchip:</strong> {{ pet.microchip_number or 'Not specified' }}</p>
+                    <p><strong>Owner:</strong> {{ pet.owner_name or 'Not specified' }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Overall Status -->
+    <div class="alert {% if result.is_compliant %}alert-success{% else %}alert-danger{% endif %} d-flex align-items-center" role="alert">
+        <i class="bi {% if result.is_compliant %}bi-check-circle-fill{% else %}bi-exclamation-triangle-fill{% endif %} me-2"></i>
+        <div>
+            <strong>Overall Status: 
+            {% if result.is_compliant %}
+            COMPLIANT
+            {% else %}
+            NON-COMPLIANT
+            {% endif %}
+            </strong>
+            {% if result.scenario %}
+            <span class="ms-2">({{ result.scenario.value }} scenario)</span>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Requirements Table -->
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Requirements Breakdown</h5>
+        </div>
+        <div class="card-body">
+            {% if result.requirements %}
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Requirement</th>
+                            <th>Status</th>
+                            <th>Last Administered</th>
+                            <th>Next Due</th>
+                            <th>Days Until Due</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for req in result.requirements %}
+                        <tr>
+                            <td>
+                                <strong>{{ req.vaccine_name }}</strong>
+                                {% if req.is_mandatory %}
+                                <span class="badge bg-danger ms-1">Mandatory</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if req.status == RequirementStatus.COMPLIANT %}
+                                <span class="badge bg-success">Compliant</span>
+                                {% elif req.status == RequirementStatus.DUE_SOON %}
+                                <span class="badge bg-warning text-dark">Due Soon</span>
+                                {% elif req.status == RequirementStatus.OVERDUE %}
+                                <span class="badge bg-danger">Overdue</span>
+                                {% else %}
+                                <span class="badge bg-secondary">Not Done</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if req.last_administered %}
+                                {{ req.last_administered.strftime('%Y-%m-%d') }}
+                                {% else %}
+                                <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if req.next_due %}
+                                {{ req.next_due.strftime('%Y-%m-%d') }}
+                                {% else %}
+                                <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if req.days_until_due is not none %}
+                                {% if req.days_until_due < 0 %}
+                                <span class="text-danger">{{ req.days_until_due }} days ago</span>
+                                {% elif req.days_until_due == 0 %}
+                                <span class="text-warning">Today</span>
+                                {% elif req.days_until_due <= 30 %}
+                                <span class="text-warning">{{ req.days_until_due }} days</span>
+                                {% else %}
+                                <span class="text-success">{{ req.days_until_due }} days</span>
+                                {% endif %}
+                                {% else %}
+                                <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            <td><small>{{ req.notes }}</small></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle"></i> No compliance requirements found for this pet.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Actions -->
+    <div class="mt-4">
+        <a href="{{ url_for('main.pets_detail', pet_id=pet.id) }}" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left"></i> Back to Pet Details
+        </a>
+        <a href="{{ url_for('main.compliance_list') }}" class="btn btn-outline-secondary">
+            <i class="bi bi-shield-check"></i> Back to Compliance Dashboard
+        </a>
+    </div>
+</div>
+{% endblock %}

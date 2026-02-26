@@ -1,0 +1,9 @@
+id,name,species,description,is_mandatory,notes
+1,Rabies,dog,"Required for all dogs in Hong Kong. First vaccination at 3 months, booster within 30 days, then every 3 years.",1,
+2,DHPP/DAPP,dog,"Distemper, Hepatitis, Parainfluenza, Parvovirus. Core vaccine for dogs.",1,
+3,Bordetella,dog,Kennel cough. Required for dogs in boarding facilities.,0,
+4,Leptospirosis,dog,Leptospira bacteria vaccine. Recommended for dogs in Hong Kong.,0,
+5,Canine Influenza,dog,Dog flu vaccine. Recommended for social dogs.,0,
+6,Rabies,cat,Required for cats in Hong Kong. First vaccination at 3 months.,1,
+7,FVRCP,cat,"Feline Viral Rhinotracheitis, Calicivirus, Panleukopenia. Core vaccine for cats.",1,
+8,FeLV,cat,Feline Leukemia Virus. Recommended for outdoor cats.,0,

@@ -1,0 +1,10 @@
+{
+  "id": "5.5",
+  "title": "Web app - vet clinic directory",
+  "status": "ready",
+  "priority": 3,
+  "deps": ["5.3"],
+  "evidence": [],
+  "progress_pct": 0,
+  "estimate_minutes": 45
+}

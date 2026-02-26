@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Vet Clinics - PetVaxHK{% endblock %}
+
+{% block content %}
+<h1>Veterinary Clinics</h1>
+
+<div class="section-header">
+    <p>List of veterinary clinics in Hong Kong</p>
+    <a href="{{ url_for('main.clinics_add') }}" class="btn btn-primary">Add Clinic</a>
+</div>
+
+<form method="GET" class="search-form">
+    <div class="search-row">
+        <input type="text" name="q" placeholder="Search clinics..." value="{{ search_query }}">
+        <select name="district">
+            <option value="">All Districts</option>
+            {% for district in districts %}
+            <option value="{{ district }}" {% if district_filter == district %}selected{% endif %}>{{ district }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-secondary">Search</button>
+        {% if search_query or district_filter %}
+        <a href="{{ url_for('main.clinics_list') }}" class="btn btn-outline">Clear</a>
+        {% endif %}
+    </div>
+</form>
+
+{% if clinics %}
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>District</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for clinic in clinics %}
+        <tr>
+            <td><strong><a href="{{ url_for('main.clinics_detail', clinic_id=clinic.id) }}">{{ clinic.name }}</a></strong></td>
+            <td>{{ clinic.address or '-' }}</td>
+            <td>{{ clinic.phone or '-' }}</td>
+            <td>{{ clinic.email or '-' }}</td>
+            <td>{{ clinic.district or '-' }}</td>
+            <td>
+                <a href="{{ url_for('main.clinics_detail', clinic_id=clinic.id) }}" class="btn-small">View</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="empty-state">No clinics found. {% if search_query or district_filter %}Try adjusting your search.{% else %}Add your first clinic to get started.{% endif %}</p>
+{% endif %}
+{% endblock %}

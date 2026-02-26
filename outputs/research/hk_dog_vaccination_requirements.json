@@ -1,0 +1,146 @@
+{
+  "version": "1.0",
+  "title": "HK Dog Vaccination Requirements - Research Findings",
+  "source": "AFCD (Agriculture, Fisheries and Conservation Department)",
+  "research_date": "2026-02-26",
+  "last_updated": "2026-02-26",
+  
+  "resident_dogs": {
+    "description": "Requirements for dogs residing in Hong Kong",
+    "mandatory": {
+      "rabies": {
+        "requirement": "All dogs aged over 5 months must be vaccinated against rabies",
+        "frequency": "Every 3 years (along with license renewal)",
+        "validity": "License valid for 3 years",
+        "provider": "Private veterinary surgeons or AFCD",
+        "legal_reference": "Cap 421A Rabies Regulation",
+        "penalty": "Fine of $10,000 for non-compliance"
+      },
+      "microchipping": {
+        "requirement": "All dogs must be microchipped for identification",
+        "timing": "Before or at the same time as rabies vaccination",
+        "standard": "ISO 11784/11785"
+      },
+      "licensing": {
+        "requirement": "All dogs aged 5 months or above must be licensed",
+        "validity": "3 years",
+        "renewal": "Must be renewed every 3 years with rabies revaccination"
+      }
+    },
+    "recommended": {
+      "core_vaccines": [
+        {
+          "name": "DHPPi (or DHPPiL)",
+          "covers": ["Canine Distemper Virus (CDV)", "Canine Adenovirus Type 1 & 2 (CAV1, CAV2)", "Canine Parvovirus (CPV)", "Canine Parainfluenza Virus (CPi)"],
+          "frequency": "First series: 3 vaccines at 8, 12, 16 weeks; then annual booster"
+        },
+        {
+          "name": "Leptospirosis",
+          "covers": "Bacterial infection spread through contaminated water/soil",
+          "frequency": "Annual booster (often combined with DHPPi as DHPPiL)",
+          "note": "Important in HK due to urban/rural interface"
+        }
+      ],
+      "non_core_vaccines": [
+        {
+          "name": "Kennel Cough (Bordetella)",
+          "recommendation": "For dogs frequently exposed to other pets (kennels, dog parks, grooming)",
+          "frequency": "Annual or every 6 months for high-risk"
+        }
+      ]
+    }
+  },
+  
+  "imported_dogs": {
+    "description": "Requirements for dogs being imported into Hong Kong",
+    "groups": {
+      "Group_I": {
+        "description": "Low rabies risk countries/places",
+        "quarantine": "None (if requirements met)",
+        "requirements": [
+          "Special Permit from AFCD",
+          "Health certificate issued within 14 days of travel",
+          "Microchip (ISO standard)",
+          "Rabies vaccination"
+        ]
+      },
+      "Group_II": {
+        "description": "Moderate rabies risk countries/places",
+        "quarantine": "Minimum 4 months at owner's expense (or return to origin)",
+        "requirements": [
+          "Special Permit from AFCD",
+          "Rabies vaccination 30 days to 12 months before arrival",
+          "Microchip",
+          "RNATT (Rabies Neutralising Antibody Titre Test)",
+          "Government veterinary health certificate"
+        ]
+      },
+      "Group_IIIA": {
+        "description": "Higher rabies risk countries/places (excluding Mainland China)",
+        "quarantine": "120 days minimum",
+        "requirements": [
+          "Special Permit from AFCD",
+          "Rabies vaccination 30 days to 12 months before arrival",
+          "Microchip",
+          "RNATT (titer ≥ 0.5 IU/ml)",
+          "Government veterinary health certificate"
+        ]
+      },
+      "Group_IIIB": {
+        "description": "Highest rabies risk countries/places",
+        "quarantine": "120 days minimum",
+        "requirements": [
+          "Special Permit from AFCD",
+          "Rabies vaccination 30 days to 12 months before arrival",
+          "Microchip",
+          "RNATT (titer ≥ 0.5 IU/ml)",
+          "Government veterinary health certificate"
+        ]
+      },
+      "Mainland_China": {
+        "description": "Updated arrangement effective 3 June 2025",
+        "quarantine": "30 days (reduced from 120 days)",
+        "requirements": "All relevant import requirements must be met"
+      }
+    },
+    "rabies_timing": {
+      "minimum": "30 days before arrival",
+      "maximum": "12 months before arrival"
+    }
+  },
+  
+  "vaccination_timing_puppies": {
+    "first_vaccines": "8 weeks old",
+    "second_vaccine": "12 weeks old",
+    "third_vaccine": "16 weeks old",
+    "rabies": "Can be given at 5 months (required for license)",
+    "note": "Puppies should complete initial series before exposure to unfamiliar dogs"
+  },
+  
+  "clinical_notes": {
+    "pre_vaccination": [
+      "Check for history of allergic reactions to vaccinations",
+      "Ensure dog is healthy (no vomiting/diarrhea in past few days)",
+      "Consult vet if ill"
+    ],
+    "post_vaccination_monitoring": [
+      "Watch for allergic reactions within first few hours",
+      "Symptoms: vomiting, breathing difficulty, rash, facial swelling, injection site swelling",
+      "Seek veterinary treatment if symptoms occur"
+    ]
+  },
+  
+  "sources": [
+    "https://www.pets.gov.hk/english/animal_health_and_welfare/rabies.html",
+    "https://www.afcd.gov.hk/english/quarantine/qua_ie/qua_ie_ipab/qua_ie_ipab_idc/qua_ie_ipab_idc.html",
+    "https://www.1823.gov.hk/en/faq/how-to-apply-for-or-renew-a-dog-licence",
+    "https://www.elegislation.gov.hk/hk/cap421A"
+  ],
+  
+  "notes": [
+    "HK is rabies-free since 1989",
+    "Rabies vaccination is legally required, not just recommended",
+    "License and vaccination go hand-in-hand (3-year cycle)",
+    "Import requirements vary significantly by country of origin"
+  ]
+}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Add Pet - PetVaxHK{% endblock %}
+
+{% block content %}
+<h1>Add New Pet</h1>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="name">Pet Name *</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="species">Species *</label>
+        <select id="species" name="species" required>
+            <option value="">Select species</option>
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="breed">Breed</label>
+        <input type="text" id="breed" name="breed">
+    </div>
+    
+    <div class="form-group">
+        <label for="date_of_birth">Date of Birth</label>
+        <input type="date" id="date_of_birth" name="date_of_birth">
+    </div>
+    
+    <div class="form-group">
+        <label for="microchip_number">Microchip Number</label>
+        <input type="text" id="microchip_number" name="microchip_number">
+    </div>
+    
+    <div class="form-group">
+        <label for="owner_name">Owner Name</label>
+        <input type="text" id="owner_name" name="owner_name">
+    </div>
+    
+    <div class="form-group">
+        <label for="owner_contact">Owner Contact</label>
+        <input type="text" id="owner_contact" name="owner_contact">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Add Pet</button>
+    <a href="{{ url_for('main.pets_list') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

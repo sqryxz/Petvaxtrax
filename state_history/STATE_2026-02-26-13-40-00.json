@@ -1,0 +1,206 @@
+{
+  "version": 2,
+  "goal": "Build PetVaxHK: local-first pet vaccine tracker for Hong Kong (dogs + cats)",
+  "definition_of_done": [
+    "Phase 1: Project skeleton + test harness complete",
+    "Phase 2: Research complete (official HK gov rules)",
+    "Phase 3: Core engine (rules + due dates + reminders) working",
+    "Phase 4: CLI app complete with all CRUD + compliance + reminders",
+    "Phase 5: Web app complete with all features",
+    "Phase 6: Documentation + release bundle (requires approval)"
+  ],
+  "constraints": {
+    "max_files_changed_per_run": 10,
+    "time_budget_minutes": 30,
+    "no_deploy_without_approval": true,
+    "lock_ttl_seconds": 900,
+    "working_directory": "petvax"
+  },
+  "backlog": [
+    {
+      "id": "0.1",
+      "title": "Create directory skeleton",
+      "status": "done",
+      "priority": 10,
+      "deps": [],
+      "evidence": [{"kind": "note", "note": "Created directories per spec: inputs/, processing/, outputs/, logs/, state/, app/"}],
+      "progress_pct": 100
+    },
+    {
+      "id": "0.2",
+      "title": "Create doer.md and planner.md",
+      "status": "done",
+      "priority": 10,
+      "deps": ["0.1"],
+      "evidence": [{"kind": "file", "path": "petvax/doer.md"}, {"kind": "file", "path": "petvax/planner.md"}],
+      "progress_pct": 100
+    },
+    {
+      "id": "0.3",
+      "title": "Set up initial agent state",
+      "status": "done",
+      "priority": 10,
+      "deps": ["0.2"],
+      "evidence": [{"kind": "file", "path": "petvax/agent_state.json", "note": "initial state with Phases 1-6 defined"}],
+      "progress_pct": 100
+    },
+    {
+      "id": "1.1",
+      "title": "Create directory skeleton + placeholder files",
+      "status": "done",
+      "priority": 5,
+      "deps": ["0.3"],
+      "evidence": [
+        {"kind": "file", "path": "petvax/inputs/seeds/.gitkeep"},
+        {"kind": "file", "path": "petvax/inputs/i18n/.gitkeep"},
+        {"kind": "file", "path": "petvax/processing/web_cache/.gitkeep"},
+        {"kind": "file", "path": "petvax/processing/tmp/.gitkeep"},
+        {"kind": "file", "path": "petvax/outputs/research/.gitkeep"},
+        {"kind": "file", "path": "petvax/outputs/reminders/.gitkeep"},
+        {"kind": "file", "path": "petvax/outputs/exports/.gitkeep"},
+        {"kind": "file", "path": "petvax/logs/.gitkeep"},
+        {"kind": "file", "path": "petvax/state/.gitkeep"},
+        {"kind": "file", "path": "petvax/app/core/.gitkeep"},
+        {"kind": "file", "path": "petvax/app/static/.gitkeep"},
+        {"kind": "file", "path": "petvax/app/templates/.gitkeep"},
+        {"kind": "file", "path": "petvax/app/scripts/.gitkeep"},
+        {"kind": "file", "path": "petvax/app/tests/.gitkeep"},
+        {"kind": "file", "path": "petvax/app/verify/.gitkeep"},
+        {"kind": "file", "path": "petvax/app/research/.gitkeep"}
+      ],
+      "progress_pct": 100
+    },
+    {
+      "id": "1.2",
+      "title": "Define i18n seed files (EN/ZH)",
+      "status": "done",
+      "priority": 5,
+      "deps": ["1.1"],
+      "evidence": [
+        {"kind": "file", "path": "petvax/inputs/i18n/en.json"},
+        {"kind": "file", "path": "petvax/inputs/i18n/zh.json", "note": "Traditional Chinese for HK"}
+      ],
+      "progress_pct": 100
+    },
+    {
+      "id": "1.3",
+      "title": "Create SQLite schema migration script",
+      "status": "done",
+      "priority": 5,
+      "deps": ["1.2"],
+      "evidence": [{"kind": "file", "path": "petvax/app/core/001_initial_schema.sql", "note": "Schema with pets, vaccines, pet_vaccinations, vet_clinics, reminders tables + views"}],
+      "progress_pct": 100
+    },
+    {
+      "id": "1.4",
+      "title": "Unit test harness",
+      "status": "in_progress",
+      "priority": 5,
+      "deps": ["1.3"],
+      "evidence": [],
+      "progress_pct": 0
+    },
+    {
+      "id": "2.1",
+      "title": "Research HK dog vaccination requirements (AFCD)",
+      "status": "blocked",
+      "priority": 5,
+      "deps": ["1.4"],
+      "evidence": [],
+      "progress_pct": 0
+    },
+    {
+      "id": "2.2",
+      "title": "Research HK cat vaccination requirements",
+      "status": "blocked",
+      "priority": 5,
+      "deps": ["1.4"],
+      "evidence": [],
+      "progress_pct": 0
+    },
+    {
+      "id": "2.3",
+      "title": "Create web cache utility for research",
+      "status": "blocked",
+      "priority": 3,
+      "deps": ["1.4"],
+      "evidence": [],
+      "progress_pct": 0
+    },
+    {
+      "id": "3.1",
+      "title": "Implement date calculation utilities",
+      "status": "ready",
+      "priority": 5,
+      "deps": ["2.1", "2.2", "2.3"],
+      "evidence": [],
+      "progress_pct": 0,
+      "estimate_minutes": 60
+    },
+    {
+      "id": "3.2",
+      "title": "Build reminder engine",
+      "status": "ready",
+      "priority": 5,
+      "deps": ["2.1", "2.2", "2.3"],
+      "evidence": [],
+      "progress_pct": 0,
+      "estimate_minutes": 90
+    },
+    {
+      "id": "3.3",
+      "title": "Implement HK vaccination rules engine",
+      "status": "ready",
+      "priority": 5,
+      "deps": ["2.1", "2.2", "2.3"],
+      "evidence": [],
+      "progress_pct": 0,
+      "estimate_minutes": 120
+    },
+    {
+      "id": "3.4",
+      "title": "Create data import/export utilities",
+      "status": "ready",
+      "priority": 3,
+      "deps": ["2.1", "2.2", "2.3"],
+      "evidence": [],
+      "progress_pct": 0,
+      "estimate_minutes": 45
+    }
+  ],
+  "next_actions": [
+    {
+      "id": "1.4",
+      "status": "in_progress"
+    }
+  ],
+  "decisions_policy": {
+    "must_ask_if": ["deploy_or_publish_external", "spend_money", "delete_files"],
+    "can_decide_if": ["purely_local_refactor_small", "add_small_copy_placeholders", "add_tests_or_linting_locally", "non-breaking_ui_tweaks_within_existing_style"]
+  },
+  "decisions": [],
+  "artifacts": [],
+  "rollback_to": "petvax/state_history/STATE_2026-02-26-13-40-00.json",
+  "last_run": {
+    "timestamp": "2026-02-26T13:40:00+08:00",
+    "task_id": "1.4",
+    "task_title": "Unit test harness",
+    "status": "in_progress",
+    "trigger_fired": "doer run",
+    "tasks_added": [],
+    "errors": []
+  },
+  "context": {
+    "language_default": "en",
+    "db_path": "outputs/pets.db",
+    "rules_path": "outputs/research/hk_rules_v1.json",
+    "domain_allowlist": ["*.gov.hk"],
+    "scenarios": ["hk_resident", "import"],
+    "features_agreed": [
+      "manual_research_first",
+      "import_checklist_plus_dates",
+      "delete_commands",
+      "vet_clinic_directory_nice_to_have"
+    ]
+  }
+}

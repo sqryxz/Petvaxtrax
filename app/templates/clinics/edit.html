@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Clinic - PetVaxHK{% endblock %}
+
+{% block content %}
+<h1>Edit Veterinary Clinic</h1>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="name">Clinic Name *</label>
+        <input type="text" id="name" name="name" value="{{ clinic.name }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="address">Address</label>
+        <textarea id="address" name="address" rows="2">{{ clinic.address or '' }}</textarea>
+    </div>
+    
+    <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" id="phone" name="phone" value="{{ clinic.phone or '' }}">
+    </div>
+    
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" value="{{ clinic.email or '' }}">
+    </div>
+    
+    <div class="form-group">
+        <label for="district">District</label>
+        <input type="text" id="district" name="district" value="{{ clinic.district or '' }}" placeholder="e.g., Central & Western">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a href="{{ url_for('main.clinics_detail', clinic_id=clinic.id) }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

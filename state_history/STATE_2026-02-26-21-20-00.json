@@ -1,0 +1,1051 @@
+{
+  "version": 2,
+  "goal": "Build PetVaxHK: local-first pet vaccine tracker for Hong Kong (dogs + cats)",
+  "definition_of_done": [
+    "Phase 1: Project skeleton + test harness complete",
+    "Phase 2: Research complete (official HK gov rules)",
+    "Phase 3: Core engine (rules + due dates + reminders) working",
+    "Phase 4: CLI app complete with all CRUD + compliance + reminders",
+    "Phase 5: Web app complete with all features",
+    "Phase 6: Documentation + release bundle (requires approval)"
+  ],
+  "constraints": {
+    "max_files_changed_per_run": 10,
+    "time_budget_minutes": 30,
+    "no_deploy_without_approval": true,
+    "lock_ttl_seconds": 900,
+    "working_directory": "petvax"
+  },
+  "backlog": [
+    {
+      "id": "0.1",
+      "title": "Create directory skeleton",
+      "status": "done",
+      "priority": 10,
+      "deps": [],
+      "evidence": [
+        {
+          "kind": "note",
+          "note": "Created directories per spec: inputs/, processing/, outputs/, logs/, state/, app/"
+        }
+      ],
+      "progress_pct": 100
+    },
+    {
+      "id": "0.2",
+      "title": "Create doer.md and planner.md",
+      "status": "done",
+      "priority": 10,
+      "deps": [
+        "0.1"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/doer.md"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/planner.md"
+        }
+      ],
+      "progress_pct": 100
+    },
+    {
+      "id": "0.3",
+      "title": "Set up initial agent state",
+      "status": "done",
+      "priority": 10,
+      "deps": [
+        "0.2"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/agent_state.json",
+          "note": "initial state with Phases 1-6 defined"
+        }
+      ],
+      "progress_pct": 100
+    },
+    {
+      "id": "1.1",
+      "title": "Create directory skeleton + placeholder files",
+      "status": "done",
+      "priority": 5,
+      "deps": [
+        "0.3"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/inputs/seeds/.gitkeep"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/inputs/i18n/.gitkeep"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/processing/web_cache/.gitkeep"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/processing/tmp/.gitkeep"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/outputs/research/.gitkeep"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/outputs/reminders/.gitkeep"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/outputs/exports/.gitkeep"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/logs/.gitkeep"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/state/.gitkeep"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/core/.gitkeep"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/static/.gitkeep"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/.gitkeep"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/scripts/.gitkeep"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/tests/.gitkeep"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/verify/.gitkeep"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/research/.gitkeep"
+        }
+      ],
+      "progress_pct": 100
+    },
+    {
+      "id": "1.2",
+      "title": "Define i18n seed files (EN/ZH)",
+      "status": "done",
+      "priority": 5,
+      "deps": [
+        "1.1"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/inputs/i18n/en.json"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/inputs/i18n/zh.json",
+          "note": "Traditional Chinese for HK"
+        }
+      ],
+      "progress_pct": 100
+    },
+    {
+      "id": "1.3",
+      "title": "Create SQLite schema migration script",
+      "status": "done",
+      "priority": 5,
+      "deps": [
+        "1.2"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/core/001_initial_schema.sql",
+          "note": "Schema with pets, vaccines, pet_vaccinations, vet_clinics, reminders tables + views"
+        }
+      ],
+      "progress_pct": 100
+    },
+    {
+      "id": "1.4",
+      "title": "Unit test harness",
+      "status": "done",
+      "priority": 5,
+      "deps": [
+        "1.3"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/pyproject.toml",
+          "note": "pytest configuration"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/tests/conftest.py",
+          "note": "Shared test fixtures"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/tests/test_schema.py",
+          "note": "16 schema validation tests"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/tests/__init__.py"
+        },
+        {
+          "kind": "note",
+          "note": "All 16 tests pass: 11 schema + 3 pet ops + 2 vaccine ops"
+        }
+      ],
+      "progress_pct": 100
+    },
+    {
+      "id": "2.1",
+      "title": "Research HK dog vaccination requirements (AFCD)",
+      "status": "done",
+      "priority": 5,
+      "deps": [
+        "1.4"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/outputs/research/hk_dog_vaccination_requirements.json",
+          "note": "Comprehensive research covering resident dogs, import requirements, Group I-III quarantine rules"
+        }
+      ],
+      "progress_pct": 100
+    },
+    {
+      "id": "2.2",
+      "title": "Research HK cat vaccination requirements",
+      "status": "done",
+      "priority": 5,
+      "deps": [
+        "1.4"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/outputs/research/hk_cat_vaccination_requirements.json",
+          "note": "Comprehensive research covering import requirements by country group, required vaccinations, quarantine rules"
+        }
+      ],
+      "progress_pct": 100
+    },
+    {
+      "id": "2.3",
+      "title": "Create web cache utility for research",
+      "status": "done",
+      "priority": 3,
+      "deps": [
+        "1.4"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/processing/web_cache/__init__.py",
+          "note": "WebCache class with TTL, fetch, and stats functionality"
+        }
+      ],
+      "progress_pct": 100
+    },
+    {
+      "id": "3.1",
+      "title": "Implement date calculation utilities",
+      "status": "done",
+      "priority": 5,
+      "deps": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/core/dates.py",
+          "note": "Date calculation utilities with rabies, DHPP, import timing, license renewal functions"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/tests/test_dates.py",
+          "note": "14 unit tests covering all date functions"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 60
+    },
+    {
+      "id": "3.2",
+      "title": "Build reminder engine",
+      "status": "done",
+      "priority": 5,
+      "deps": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/core/reminders.py",
+          "note": "Reminder engine with due_soon, overdue, upcoming reminder types"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/tests/test_reminders.py",
+          "note": "14 unit tests covering all reminder engine functionality"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 90
+    },
+    {
+      "id": "3.3",
+      "title": "Implement HK vaccination rules engine",
+      "status": "done",
+      "priority": 5,
+      "deps": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/core/rules.py",
+          "note": "HK vaccination rules engine with compliance checking, import requirements, and timeline calculations"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/tests/test_rules.py",
+          "note": "34 unit tests covering all rules engine functionality"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 120
+    },
+    {
+      "id": "3.4",
+      "title": "Create data import/export utilities",
+      "status": "done",
+      "priority": 3,
+      "deps": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/core/io.py",
+          "note": "Data import/export utilities with JSON, CSV, backup/restore support"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/tests/test_io.py",
+          "note": "16 unit tests covering all import/export functionality"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 45
+    },
+    {
+      "id": "4.1",
+      "title": "Set up CLI entry point and command structure",
+      "status": "done",
+      "priority": 5,
+      "deps": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/cli.py",
+          "note": "CLI entry point with argparse, supports pet/vaccine/reminder/compliance/export commands"
+        },
+        {
+          "kind": "note",
+          "note": "CLI tested and working: pet list, vaccine list, reminder, compliance, export all functional"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 30
+    },
+    {
+      "id": "4.2",
+      "title": "Implement pet CRUD commands (add, list, edit, delete)",
+      "status": "done",
+      "priority": 5,
+      "deps": [
+        "4.1"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/cli.py",
+          "note": "Full pet CRUD implementation: add (interactive), list, edit, delete with confirmation"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 60
+    },
+    {
+      "id": "4.3",
+      "title": "Implement vaccine CRUD commands (add, list, edit, delete)",
+      "status": "done",
+      "priority": 5,
+      "deps": [
+        "4.1"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/cli.py",
+          "note": "Full vaccine CRUD: add (interactive with auto-calculated due dates), list, edit, delete with confirmation"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 60
+    },
+    {
+      "id": "4.4",
+      "title": "Implement reminder/notification commands",
+      "status": "done",
+      "priority": 5,
+      "deps": [
+        "4.2",
+        "4.3"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/cli.py",
+          "note": "Full reminder CLI implementation: show, list, generate, mark, cancel, delete commands"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 45
+    },
+    {
+      "id": "4.5",
+      "title": "Implement compliance check command",
+      "status": "done",
+      "priority": 5,
+      "deps": [
+        "4.3"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/cli.py",
+          "note": "Compliance command with --detailed and --pet options, uses format_compliance_summary from rules.py"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 45
+    },
+    {
+      "id": "4.6",
+      "title": "Add export commands (JSON, CSV)",
+      "status": "done",
+      "priority": 3,
+      "deps": [
+        "4.2",
+        "4.3"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/cli.py",
+          "note": "Export CLI: cmd_export with -f json/csv and -o output options"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/core/io.py",
+          "note": "export_json() and export_csv() fully implemented with JSON/CSV import/export"
+        },
+        {
+          "kind": "note",
+          "note": "JSON export tested: exports all tables to JSON. CSV export tested: creates separate CSVs per table + summary"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 30
+    },
+    {
+      "id": "4.7",
+      "title": "CLI integration tests and edge case handling",
+      "status": "done",
+      "priority": 4,
+      "deps": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/tests/test_cli.py",
+          "note": "16 CLI integration tests covering help, invalid input, empty state, export, compliance"
+        },
+        {
+          "kind": "note",
+          "note": "All 110 tests pass: 94 unit + 16 CLI integration tests"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 60
+    },
+    {
+      "id": "5.1",
+      "title": "Set up Flask web app skeleton",
+      "status": "done",
+      "priority": 4,
+      "deps": [
+        "4.7"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/__init__.py",
+          "note": "Flask app factory with SQLAlchemy"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/models.py",
+          "note": "SQLAlchemy models: Pet, Vaccine, PetVaccination, VetClinic, Reminder"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/routes.py",
+          "note": "Flask routes for all CRUD operations"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/",
+          "note": "Base template + 12 page templates (dashboard, pets, vaccines, reminders, clinics)"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/static/css/style.css",
+          "note": "Responsive CSS with HK-themed styling"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/run_web.py",
+          "note": "Flask web app runner"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/pyproject.toml",
+          "note": "Added Flask and flask-sqlalchemy dependencies"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 45
+    },
+    {
+      "id": "5.2",
+      "title": "Web app - pet management (list/add/edit/delete)",
+      "status": "done",
+      "priority": 4,
+      "deps": [
+        "5.1"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/pets/list.html",
+          "note": "Pet list with table view and Add Pet button"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/pets/add.html",
+          "note": "Pet add form with all fields: name, species, breed, DOB, microchip, owner info"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/pets/edit.html",
+          "note": "Pet edit form pre-populated with existing data"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/pets/detail.html",
+          "note": "Pet detail view with vaccination history, edit/delete buttons"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/routes.py",
+          "note": "Routes: pets_list, pets_add, pets_detail, pets_edit, pets_delete"
+        },
+        {
+          "kind": "note",
+          "note": "App initializes successfully, all CRUD operations functional"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 60
+    },
+    {
+      "id": "5.3",
+      "title": "Web app - vaccine management (list/add/edit/delete)",
+      "status": "done",
+      "priority": 4,
+      "deps": [
+        "5.2"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/routes.py",
+          "note": "Routes: vaccines_list, vaccines_add, vaccines_detail, vaccines_edit, vaccines_delete"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/vaccines/list.html",
+          "note": "Vaccine list with actions column"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/vaccines/add.html",
+          "note": "Existing add form"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/vaccines/edit.html",
+          "note": "Edit form with pre-populated data + delete button"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/vaccines/detail.html",
+          "note": "Vaccine detail view with vaccination history"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/vaccinations/edit.html",
+          "note": "Edit form for vaccination records"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/pets/detail.html",
+          "note": "Added Edit/Delete buttons for each vaccination record"
+        },
+        {
+          "kind": "note",
+          "note": "Full CRUD for both vaccine types AND vaccination records implemented"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 60
+    },
+    {
+      "id": "5.4",
+      "title": "Web app - reminders dashboard",
+      "status": "done",
+      "priority": 3,
+      "deps": [
+        "5.2"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/routes.py",
+          "note": "Enhanced reminders_list with stats, overdue/due_soon sections, and reminders_generate route"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/reminders/list.html",
+          "note": "Full dashboard with stats cards, overdue alerts, due soon section, generate button, and all reminders table"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 45
+    },
+    {
+      "id": "5.5",
+      "title": "Web app - vet clinic directory",
+      "status": "done",
+      "priority": 3,
+      "deps": [
+        "5.3"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/routes.py",
+          "note": "Added clinics_detail, clinics_edit, clinics_delete routes"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/clinics/detail.html",
+          "note": "Clinic detail view with edit/delete buttons"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/clinics/edit.html",
+          "note": "Clinic edit form with pre-populated data"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/clinics/list.html",
+          "note": "Enhanced list with search, district filter, and action links"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 45
+    },
+    {
+      "id": "5.6",
+      "title": "Web app - settings and remaining pages",
+      "status": "done",
+      "priority": 3,
+      "deps": [
+        "5.3"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/settings/list.html",
+          "note": "Settings page with language, timezone, date format, notification preferences"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/about.html",
+          "note": "About page with features and HK vaccination info"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/routes.py",
+          "note": "Added settings, settings_update, and about routes"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/base.html",
+          "note": "Added Settings and About to navigation menu"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 45
+    },
+    {
+      "id": "5.7",
+      "title": "Web app - testing and polish",
+      "status": "done",
+      "priority": 3,
+      "deps": [
+        "5.4",
+        "5.5"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/tests/test_web.py",
+          "note": "13 new web app tests covering all main routes"
+        },
+        {
+          "kind": "note",
+          "note": "Fixed broken template link in settings/list.html - removed non-existent export_data and import_data URLs"
+        },
+        {
+          "kind": "note",
+          "note": "All 123 tests pass: 110 unit + 13 web integration tests"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 60
+    },
+    {
+      "id": "6.1",
+      "title": "Generate user documentation (README + usage guide)",
+      "status": "done",
+      "priority": 3,
+      "deps": [
+        "4.7"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/README.md",
+          "note": "Comprehensive user documentation in Traditional Chinese with CLI reference, web app guide, and HK vaccination requirements"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 45
+    },
+    {
+      "id": "5.8",
+      "title": "Web app - add compliance dashboard page",
+      "status": "done",
+      "priority": 3,
+      "deps": [
+        "5.5"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/app/routes.py",
+          "note": "Added compliance_list and compliance_detail routes"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/compliance/list.html",
+          "note": "Compliance dashboard with stats cards, pet compliance table"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/compliance/detail.html",
+          "note": "Per-pet compliance detail with requirements breakdown"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/app/templates/base.html",
+          "note": "Added Compliance link to navigation"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 45
+    },
+    {
+      "id": "6.2",
+      "title": "Create installation and setup guide",
+      "status": "done",
+      "priority": 3,
+      "deps": [
+        "5.7",
+        "6.1"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/INSTALL.md",
+          "note": "Comprehensive installation guide covering prerequisites, multiple installation methods, configuration, troubleshooting, development setup, and upgrade path"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 30
+    },
+    {
+      "id": "6.3",
+      "title": "Create API reference documentation",
+      "status": "done",
+      "priority": 2,
+      "deps": [
+        "5.7"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/API.md",
+          "note": "Comprehensive API reference covering CLI commands, web routes, Python API (rules, dates, reminders, io), data models, configuration, and examples"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 45
+    },
+    {
+      "id": "6.4",
+      "title": "Create release bundle (zip distribution)",
+      "status": "done",
+      "priority": 3,
+      "deps": [
+        "6.2",
+        "6.3"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/releases/petvax-hk-v1.0.0.zip",
+          "note": "Release bundle created with v1.0.0 containing README.md, INSTALL.md, API.md, app/, inputs/, processing/, outputs/ directories and all source files"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 30
+    },
+    {
+      "id": "6.5",
+      "title": "Final verification and pre-release checklist",
+      "status": "done",
+      "priority": 2,
+      "deps": [
+        "6.4"
+      ],
+      "evidence": [
+        {
+          "kind": "note",
+          "note": "All 123 tests pass: 110 unit + 13 web integration tests"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/releases/petvax-hk-v1.0.0.zip",
+          "note": "Release bundle exists and verified"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/README.md",
+          "note": "User documentation exists"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/INSTALL.md",
+          "note": "Installation guide exists"
+        },
+        {
+          "kind": "file",
+          "path": "petvax/API.md",
+          "note": "API reference exists"
+        },
+        {
+          "kind": "note",
+          "note": "CLI verified working: pet, vaccine, reminder, compliance, export commands functional"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 20
+    },
+    {
+      "id": "6.6",
+      "title": "Create sample pet data for demo/testing",
+      "status": "done",
+      "priority": 2,
+      "deps": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "petvax/inputs/seeds/sample_data.json",
+          "note": "Comprehensive sample data with 5 pets (3 dogs, 2 cats), 12 vaccination records, 3 vet clinics, 4 reminders"
+        }
+      ],
+      "progress_pct": 100,
+      "estimate_minutes": 20
+    },
+    {
+      "id": "6.7",
+      "title": "Create troubleshooting FAQ document",
+      "status": "ready",
+      "priority": 2,
+      "deps": [],
+      "evidence": [],
+      "progress_pct": 0,
+      "estimate_minutes": 30
+    },
+    {
+      "id": "6.8",
+      "title": "Add CI/CD configuration templates",
+      "status": "ready",
+      "priority": 1,
+      "deps": [],
+      "evidence": [],
+      "progress_pct": 0,
+      "estimate_minutes": 30
+    },
+    {
+      "id": "6.9",
+      "title": "Create backup/restore testing script",
+      "status": "ready",
+      "priority": 1,
+      "deps": [],
+      "evidence": [],
+      "progress_pct": 0,
+      "estimate_minutes": 20
+    },
+    {
+      "id": "6.10",
+      "title": "Add performance benchmark tests",
+      "status": "ready",
+      "priority": 1,
+      "deps": [],
+      "evidence": [],
+      "progress_pct": 0,
+      "estimate_minutes": 30
+    }
+  ],
+  "next_actions": [
+    {
+      "id": "6.7",
+      "status": "ready"
+    },
+    {
+      "id": "6.8",
+      "status": "ready"
+    },
+    {
+      "id": "6.9",
+      "status": "ready"
+    },
+    {
+      "id": "6.10",
+      "status": "ready"
+    }
+  ],
+  "decisions_policy": {
+    "must_ask_if": [
+      "deploy_or_publish_external",
+      "spend_money",
+      "delete_files"
+    ],
+    "can_decide_if": [
+      "purely_local_refactor_small",
+      "add_small_copy_placeholders",
+      "add_tests_or_linting_locally",
+      "non-breaking_ui_tweaks_within_existing_style"
+    ]
+  },
+  "decisions": [],
+  "artifacts": [],
+  "rollback_to": "petvax/state_history/STATE_2026-02-26-20-50-00.json",
+  "last_run": {
+    "timestamp": "2026-02-26T21:10:00+08:00",
+    "task_id": "6.6",
+    "task_title": "Create sample pet data for demo/testing",
+    "status": "complete",
+    "files_changed": 1,
+    "evidence": [
+      {
+        "kind": "file",
+        "path": "petvax/inputs/seeds/sample_data.json",
+        "note": "Sample data: 5 pets, 12 vaccinations, 3 clinics, 4 reminders"
+      }
+    ],
+    "errors": []
+  },
+  "context": {
+    "language_default": "en",
+    "db_path": "outputs/pets.db",
+    "rules_path": "outputs/research/hk_rules_v1.json",
+    "domain_allowlist": [
+      "*.gov.hk"
+    ],
+    "scenarios": [
+      "hk_resident",
+      "import"
+    ],
+    "features_agreed": [
+      "manual_research_first",
+      "import_checklist_plus_dates",
+      "delete_commands",
+      "vet_clinic_directory_nice_to_have"
+    ]
+  }
+}

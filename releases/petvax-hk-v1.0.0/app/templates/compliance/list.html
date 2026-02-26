@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}Compliance Dashboard - PetVaxHK{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1><i class="bi bi-shield-check"></i> Compliance Dashboard</h1>
+    
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Total Pets</h5>
+                    <h2>{{ stats.total_pets }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Fully Compliant</h5>
+                    <h2>{{ stats.fully_compliant }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-warning text-dark">
+                <div class="card-body">
+                    <h5 class="card-title">Needs Attention</h5>
+                    <h2>{{ stats.has_issues }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Compliance Table -->
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Pet Compliance Status</h5>
+        </div>
+        <div class="card-body">
+            {% if compliance_results %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Pet Name</th>
+                            <th>Species</th>
+                            <th>Status</th>
+                            <th>Compliant</th>
+                            <th>Due Soon</th>
+                            <th>Overdue</th>
+                            <th>Not Done</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cr in compliance_results %}
+                        <tr>
+                            <td><strong>{{ cr.pet.name }}</strong></td>
+                            <td>{{ cr.pet.species }}</td>
+                            <td>
+                                {% if cr.result.is_compliant %}
+                                <span class="badge bg-success">Compliant</span>
+                                {% else %}
+                                <span class="badge bg-danger">Non-Compliant</span>
+                                {% endif %}
+                            </td>
+                            <td><span class="text-success">{{ cr.compliant_count }}</span></td>
+                            <td>
+                                {% if cr.due_soon_count > 0 %}
+                                <span class="text-warning">{{ cr.due_soon_count }}</span>
+                                {% else %}
+                                <span class="text-muted">0</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if cr.overdue_count > 0 %}
+                                <span class="text-danger">{{ cr.overdue_count }}</span>
+                                {% else %}
+                                <span class="text-muted">0</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if cr.not_done_count > 0 %}
+                                <span class="text-danger">{{ cr.not_done_count }}</span>
+                                {% else %}
+                                <span class="text-muted">0</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ url_for('main.compliance_detail', pet_id=cr.pet.id) }}" 
+                                   class="btn btn-sm btn-outline-primary">
+                                    View Details
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle"></i> No pets registered yet. 
+                <a href="{{ url_for('main.pets_add') }}">Add a pet</a> to check compliance.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Legend -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <h6 class="mb-0">Status Legend</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <span class="badge bg-success me-2">Compliant</span>
+                    <small>All requirements met</small>
+                </div>
+                <div class="col-md-3">
+                    <span class="badge bg-warning text-dark me-2">Due Soon</span>
+                    <small>Due within 30 days</small>
+                </div>
+                <div class="col-md-3">
+                    <span class="badge bg-danger me-2">Overdue</span>
+                    <small>Past due date</small>
+                </div>
+                <div class="col-md-3">
+                    <span class="badge bg-secondary me-2">Not Done</span>
+                    <small>Required but not done</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ clinic.name }} - PetVaxHK{% endblock %}
+
+{% block content %}
+<h1>{{ clinic.name }}</h1>
+
+<div class="detail-card">
+    <div class="detail-row">
+        <strong>Address:</strong>
+        <span>{{ clinic.address or '-' }}</span>
+    </div>
+    <div class="detail-row">
+        <strong>Phone:</strong>
+        <span>{{ clinic.phone or '-' }}</span>
+    </div>
+    <div class="detail-row">
+        <strong>Email:</strong>
+        <span>{{ clinic.email or '-' }}</span>
+    </div>
+    <div class="detail-row">
+        <strong>District:</strong>
+        <span>{{ clinic.district or '-' }}</span>
+    </div>
+</div>
+
+<div class="action-buttons">
+    <a href="{{ url_for('main.clinics_edit', clinic_id=clinic.id) }}" class="btn btn-primary">Edit</a>
+    <form method="POST" action="{{ url_for('main.clinics_delete', clinic_id=clinic.id) }}" style="display:inline;">
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this clinic?')">Delete</button>
+    </form>
+    <a href="{{ url_for('main.clinics_list') }}" class="btn btn-secondary">Back to List</a>
+</div>
+{% endblock %}

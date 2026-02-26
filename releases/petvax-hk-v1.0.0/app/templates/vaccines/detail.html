@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}{{ vaccine.name }} - PetVaxHK{% endblock %}
+
+{% block content %}
+<h1>{{ vaccine.name }}</h1>
+
+<div class="section-header">
+    <a href="{{ url_for('main.vaccines_list') }}" class="btn btn-secondary">← Back to Vaccines</a>
+    <a href="{{ url_for('main.vaccines_edit', vaccine_id=vaccine.id) }}" class="btn btn-primary">Edit</a>
+</div>
+
+<div class="detail-card">
+    <div class="detail-row">
+        <strong>Code:</strong>
+        <span>{{ vaccine.code }}</span>
+    </div>
+    <div class="detail-row">
+        <strong>Species:</strong>
+        <span>{{ vaccine.species|title }}</span>
+    </div>
+    <div class="detail-row">
+        <strong>Validity Period:</strong>
+        <span>{{ vaccine.valid_months|default('-') }} months</span>
+    </div>
+    <div class="detail-row">
+        <strong>Description:</strong>
+        <span>{{ vaccine.description|default('-') }}</span>
+    </div>
+</div>
+
+<h2>Vaccination History</h2>
+
+{% if vaccinations %}
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Pet</th>
+            <th>Date Administered</th>
+            <th>Due Date</th>
+            <th>Clinic</th>
+            <th>Batch #</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for v in vaccinations %}
+        <tr>
+            <td><a href="{{ url_for('main.pets_detail', pet_id=v.pet_id) }}">{{ v.pet.name }}</a></td>
+            <td>{{ v.date_administered }}</td>
+            <td>{{ v.due_date|default('-') }}</td>
+            <td>{{ v.clinic.name|default('-') if v.clinic else '-' }}</td>
+            <td>{{ v.batch_number|default('-') }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="empty-state">No vaccinations recorded for this vaccine yet.</p>
+{% endif %}
+{% endblock %}

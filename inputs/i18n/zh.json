@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "language": "zh",
+    "locale": "zh-HK",
+    "language_name": "繁體中文",
+    "created": "2026-02-26"
+  },
+  "ui": {
+    "app_name": "寵物疫苗通",
+    "app_tagline": "香港寵物疫苗追蹤應用",
+    "menu": {
+      "pets": "寵物",
+      "vaccines": "疫苗",
+      "reminders": "提醒",
+      "settings": "設定",
+      "help": "幫助"
+    },
+    "buttons": {
+      "add": "新增",
+      "edit": "編輯",
+      "delete": "刪除",
+      "save": "儲存",
+      "cancel": "取消",
+      "confirm": "確認",
+      "search": "搜尋",
+      "export": "匯出",
+      "import": "匯入"
+    },
+    "messages": {
+      "no_pets": "尚未登記寵物",
+      "no_vaccines": "沒有疫苗記錄",
+      "confirm_delete": "確定要刪除嗎？",
+      "saved_successfully": "儲存成功",
+      "deleted_successfully": "刪除成功",
+      "error_occurred": "發生錯誤"
+    }
+  },
+  "pet": {
+    "species": {
+      "label": "種類",
+      "dog": "狗",
+      "cat": "貓"
+    },
+    "name": {
+      "label": "寵物名稱"
+    },
+    "breed": {
+      "label": "品種",
+      "unknown": "未知"
+    },
+    "date_of_birth": {
+      "label": "出生日期"
+    },
+    "gender": {
+      "label": "性別",
+      "male": "雄性",
+      "female": "雌性",
+      "unknown": "未知"
+    },
+    "colour": {
+      "label": "毛色"
+    },
+    "microchip": {
+      "label": "晶片號碼"
+    },
+    "license_number": {
+      "label": "牌照號碼"
+    }
+  },
+  "vaccine": {
+    "type": {
+      "label": "疫苗類型"
+    },
+    "date_administered": {
+      "label": "注射日期"
+    },
+    "date_due": {
+      "label": "下次到期日"
+    },
+    "batch_number": {
+      "label": "疫苗批次編號"
+    },
+    "vet_clinic": {
+      "label": "獸醫診所"
+    },
+    "vet_name": {
+      "label": "獸醫姓名"
+    },
+    "notes": {
+      "label": "備註"
+    }
+  },
+  "vaccines": {
+    "dog": {
+      "dhpp": "DHPP（狗瘟、肝炎、细小病毒、副流感）",
+      "rabies": "狂犬病",
+      "bordetella": "支气管败血菌（犬舍咳）",
+      "leptospirosis": "钩端螺旋体病",
+      "canine_influenza": "狗流感"
+    },
+    "cat": {
+      "fvr": "FVR（猫病毒性鼻气管炎）",
+      "fcv": "FCV（猫卡病毒）",
+      "fpv": "FPV（猫泛白细胞减少症）",
+      "rabies": "狂犬病",
+      "felv": "FeLV（猫白血病）"
+    }
+  },
+  "reminders": {
+    "upcoming": "即將到期疫苗",
+    "overdue": "已過期",
+    "due_soon": "即將到期",
+    "days_until_due": "還有 {days} 天到期",
+    "overdue_by": "已過期 {days} 天"
+  },
+  "validation": {
+    "required": "此欄位為必填",
+    "invalid_date": "請輸入有效日期",
+    "future_date": "日期不能將來",
+    "invalid_microchip": "晶片號碼格式錯誤（15位數字）"
+  }
+}

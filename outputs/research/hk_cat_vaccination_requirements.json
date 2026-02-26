@@ -1,0 +1,112 @@
+{
+  "title": "Hong Kong Cat Vaccination Requirements",
+  "source": "AFCD (Agriculture, Fisheries and Conservation Department)",
+  "source_urls": [
+    "https://www.afcd.gov.hk/english/quarantine/qua_ie/qua_ie_ipab/qua_ie_ipab_idc/qua_ie_ipab_idc.html",
+    "https://www.pettravel.com/information/pet-passports/hong-kong-pet-import-requirements/"
+  ],
+  "research_date": "2026-02-26",
+  "summary": "Hong Kong regulates cat imports through a tiered group system based on rabies status. Cats must be microchipped, vaccinated against rabies (for non-Group I), feline panleukopenia, and feline respiratory disease complex. Quarantine requirements vary from 0-120 days depending on origin country group.",
+  "country_groups": {
+    "group_i": {
+      "name": "Rabies-Free Countries",
+      "countries": ["Australia", "Fiji", "Hawaii", "Ireland", "Japan", "New Zealand", "United Kingdom", "Bailiwick of Jersey"],
+      "quarantine_days": 0,
+      "rabies_vaccination": "Optional but recommended",
+      "residency_requirement_months": 6,
+      "notes": "Normally exempt from quarantine if all permit conditions met"
+    },
+    "group_ii": {
+      "name": "Rabies-Controlled Countries",
+      "countries": ["Austria", "Bahamas", "Bahrain", "Belgium", "Bermuda", "Bruneu", "Canada", "Cayman Island", "Cyprus", "Denmark", "France", "Gibraltar", "Iceland", "Italy", "Jamaica", "Luxembourg", "Maldives", "Malta", "Mauritius", "Netherlands", "Norway", "Papua New Guinea", "Portugal", "Seychelles", "Singapore", "Solomon Islands", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "USA (Continental)", "Vanuatu", "Virgin Islands"],
+      "quarantine_days": 0,
+      "rabies_vaccination": "Required",
+      "residency_requirement_months": 4,
+      "notes": "No quarantine if compliant; rabies vaccination 30 days to 12 months before entry"
+    },
+    "group_iiia": {
+      "name": "Rabies-Infected Countries (NEW)",
+      "countries": ["Mainland China", "Hungary", "Lithuania", "Macao SAR", "Malaysia", "Thailand"],
+      "quarantine_days": 30,
+      "rabies_vaccination": "Required + titer test",
+      "residency_requirement_months": 4,
+      "notes": "Mandatory 30-day quarantine; rabies antibody titer test required"
+    },
+    "group_iiib": {
+      "name": "Other Countries",
+      "countries": "All other countries not in Group I, II, or IIIA",
+      "quarantine_days": 120,
+      "rabies_vaccination": "Required + titer test",
+      "residency_requirement_months": null,
+      "notes": "Mandatory 120-day quarantine; rabies antibody titer test required"
+    }
+  },
+  "required_vaccinations": {
+    "rabies": {
+      "required_for_groups": ["II", "IIIA", "IIIB"],
+      "optional_for_groups": ["I"],
+      "timing": "Between 30 days and 12 months before entry",
+      "minimum_age": "90 days",
+      "microchip_required_before": true,
+      "vaccine_validity": "1 year (primary), multi-year acceptable for boosters"
+    },
+    "feline_panleukopenia": {
+      "name": "Feline Panleukopenia (FPV) / Infectious Enteritis",
+      "required": true,
+      "all_groups": true,
+      "notes": "Also known as feline distemper; core vaccine for all cats"
+    },
+    "feline_respiratory_disease_complex": {
+      "name": "Feline Viral Rhinotracheitis (FVR) + Feline Calicivirus (FCV)",
+      "required": true,
+      "all_groups": true,
+      "notes": "Often combined as FVRCP vaccine"
+    }
+  },
+  "other_requirements": {
+    "microchip": {
+      "type": "ISO 11784/11785 compliant",
+      "formats": ["9-digit", "15-digit"],
+      "timing": "Must be implanted before vaccination",
+      "notes": "Must be readable by universal scanner"
+    },
+    "import_permit": {
+      "authority": "AFCD",
+      "validity_months": 6,
+      "valid_for": "Single consignment",
+      "application_lead_time": "At least 3 working days (5 days from receipt)",
+      "fee_hkd": 432,
+      "fee_each_additional_hkd": 102
+    },
+    "health_certificate": {
+      "validity_days": 14,
+      "issued_by": "Accredited veterinarian in origin country",
+      "endorsement_required": "Yes, by governing authority in origin country",
+      "originals_required": 2
+    },
+    "parasite_treatment": {
+      "required": true,
+      "target_parasites": ["ticks", "tapeworm", "nematodes", "cestodes"]
+    }
+  },
+  "resident_cats_in_hk": {
+    "dog_licensing": "Not applicable to cats (dogs >5 months require license + rabies vaccination)",
+    "notes": "No mandatory vaccination requirement for resident cats in HK under AFCD regulations; however, vet-recommended core vaccines include FVRCP and FeLV"
+  },
+  "special_cases": {
+    "disability_assistance_cats": {
+      "status": "Not explicitly covered in AFCD policy (DAD refers to dogs only)",
+      "notes": "Emotional support animals not recognized"
+    },
+    " bengal_cats": {
+      "requirement": "Documentation certifying 5th generation or above",
+      "notes": "Must contact AFCD for required documents"
+    }
+  },
+  "key_contacts": {
+    "afcd_hotline": "1823",
+    "email": "icsenquiry@afcd.gov.hk",
+    "address": "Permit & Certification Section, Import & Export Division, 5th Floor, Agriculture, Fisheries and Conservation Department, Cheung Sha Wan Government Offices, 303 Cheung Sha Wan Road, Kowloon, Hong Kong",
+    "office_hours": "Mon-Fri 8:30am-12:30pm, 1:30pm-5:15pm"
+  }
+}

@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}Reminders Dashboard - PetVaxHK{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h1>Reminders Dashboard</h1>
+    
+    <!-- Stats Cards -->
+    <section class="stats">
+        <div class="stat-card">
+            <h3>Total</h3>
+            <p class="stat-number">{{ stats.total }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Pending</h3>
+            <p class="stat-number">{{ stats.pending }}</p>
+        </div>
+        <div class="stat-card stat-warning">
+            <h3>Overdue</h3>
+            <p class="stat-number">{{ stats.overdue }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Due Soon</h3>
+            <p class="stat-number">{{ stats.due_soon }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Completed</h3>
+            <p class="stat-number">{{ stats.completed }}</p>
+        </div>
+    </section>
+    
+    <!-- Actions -->
+    <div class="section-header" style="margin-bottom: 1.5rem;">
+        <div>
+            <a href="{{ url_for('main.reminders_list') }}" class="btn btn-small {% if not status_filter %}btn-primary{% else %}btn-secondary{% endif %}">All</a>
+            <a href="{{ url_for('main.reminders_list', status='pending') }}" class="btn btn-small {% if status_filter == 'pending' %}btn-primary{% else %}btn-secondary{% endif %}">Pending</a>
+            <a href="{{ url_for('main.reminders_list', status='completed') }}" class="btn btn-small {% if status_filter == 'completed' %}btn-primary{% else %}btn-secondary{% endif %}">Completed</a>
+        </div>
+        <form action="{{ url_for('main.reminders_generate') }}" method="post">
+            <button type="submit" class="btn btn-primary">Generate Reminders</button>
+        </form>
+    </div>
+    
+    <!-- Overdue Section -->
+    {% if overdue_reminders %}
+    <section class="alerts" style="margin-bottom: 2rem;">
+        <h2>⚠️ Overdue Reminders</h2>
+        <div class="alert-list">
+            {% for reminder in overdue_reminders %}
+            <div class="alert alert-danger">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <strong>{{ reminder.pet.name }}</strong> - {{ reminder.vaccine.name if reminder.vaccine else 'Vaccination' }}
+                        <br><small>Due: {{ reminder.due_date }}</small>
+                    </div>
+                    <form action="{{ url_for('main.reminders_complete', reminder_id=reminder.id) }}" method="post">
+                        <button type="submit" class="btn btn-small">Mark Done</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+    
+    <!-- Due Soon Section -->
+    {% if due_soon_reminders %}
+    <section style="margin-bottom: 2rem;">
+        <h2>📅 Due Soon (Next 30 Days)</h2>
+        {% if due_soon_reminders %}
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Pet</th>
+                    <th>Vaccine</th>
+                    <th>Type</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reminder in due_soon_reminders %}
+                <tr>
+                    <td>{{ reminder.pet.name }}</td>
+                    <td>{{ reminder.vaccine.name if reminder.vaccine else 'N/A' }}</td>
+                    <td><span class="badge badge-{{ reminder.reminder_type }}">{{ reminder.reminder_type }}</span></td>
+                    <td>{{ reminder.due_date }}</td>
+                    <td>{{ reminder.status|title }}</td>
+                    <td>
+                        {% if reminder.status != 'completed' %}
+                        <form action="{{ url_for('main.reminders_complete', reminder_id=reminder.id) }}" method="post">
+                            <button type="submit" class="btn btn-small btn-primary">Done</button>
+                        </form>
+                        {% else %}
+                        -
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="empty-state">No reminders due soon.</p>
+        {% endif %}
+    </section>
+    {% endif %}
+    
+    <!-- All Reminders Table -->
+    <section>
+        <h2>All Reminders</h2>
+        {% if reminders %}
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Pet</th>
+                    <th>Vaccine</th>
+                    <th>Type</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reminder in reminders %}
+                <tr>
+                    <td>{{ reminder.pet.name }}</td>
+                    <td>{{ reminder.vaccine.name if reminder.vaccine else 'N/A' }}</td>
+                    <td><span class="badge badge-{{ reminder.reminder_type }}">{{ reminder.reminder_type }}</span></td>
+                    <td>{{ reminder.due_date or '-' }}</td>
+                    <td>{{ reminder.status|title }}</td>
+                    <td>
+                        {% if reminder.status != 'completed' %}
+                        <form action="{{ url_for('main.reminders_complete', reminder_id=reminder.id) }}" method="post">
+                            <button type="submit" class="btn btn-small btn-primary">Done</button>
+                        </form>
+                        {% else %}
+                        -
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="empty-state">No reminders found. Click "Generate Reminders" to create reminders from vaccination records.</p>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}

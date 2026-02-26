@@ -1,0 +1,77 @@
+{
+  "export_metadata": {
+    "exported_at": "2026-02-26T17:41:56.031658",
+    "version": "1.0",
+    "source": "/Users/atlas/.openclaw/workspace/petvax/outputs/pets.db"
+  },
+  "pets": [],
+  "vaccines": [
+    {
+      "id": 1,
+      "name": "Rabies",
+      "species": "dog",
+      "description": "Required for all dogs in Hong Kong. First vaccination at 3 months, booster within 30 days, then every 3 years.",
+      "is_mandatory": 1,
+      "notes": null
+    },
+    {
+      "id": 2,
+      "name": "DHPP/DAPP",
+      "species": "dog",
+      "description": "Distemper, Hepatitis, Parainfluenza, Parvovirus. Core vaccine for dogs.",
+      "is_mandatory": 1,
+      "notes": null
+    },
+    {
+      "id": 3,
+      "name": "Bordetella",
+      "species": "dog",
+      "description": "Kennel cough. Required for dogs in boarding facilities.",
+      "is_mandatory": 0,
+      "notes": null
+    },
+    {
+      "id": 4,
+      "name": "Leptospirosis",
+      "species": "dog",
+      "description": "Leptospira bacteria vaccine. Recommended for dogs in Hong Kong.",
+      "is_mandatory": 0,
+      "notes": null
+    },
+    {
+      "id": 5,
+      "name": "Canine Influenza",
+      "species": "dog",
+      "description": "Dog flu vaccine. Recommended for social dogs.",
+      "is_mandatory": 0,
+      "notes": null
+    },
+    {
+      "id": 6,
+      "name": "Rabies",
+      "species": "cat",
+      "description": "Required for cats in Hong Kong. First vaccination at 3 months.",
+      "is_mandatory": 1,
+      "notes": null
+    },
+    {
+      "id": 7,
+      "name": "FVRCP",
+      "species": "cat",
+      "description": "Feline Viral Rhinotracheitis, Calicivirus, Panleukopenia. Core vaccine for cats.",
+      "is_mandatory": 1,
+      "notes": null
+    },
+    {
+      "id": 8,
+      "name": "FeLV",
+      "species": "cat",
+      "description": "Feline Leukemia Virus. Recommended for outdoor cats.",
+      "is_mandatory": 0,
+      "notes": null
+    }
+  ],
+  "pet_vaccinations": [],
+  "vet_clinics": [],
+  "reminders": []
+}

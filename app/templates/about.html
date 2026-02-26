@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}About - PetVaxHK{% endblock %}
+
+{% block content %}
+<div class="about-page">
+    <h1>About PetVaxHK</h1>
+    
+    <section class="about-intro">
+        <div class="about-logo">
+            🐾
+        </div>
+        <h2>Pet Vaccine Tracker for Hong Kong</h2>
+        <p class="version">Version 1.0.0</p>
+    </section>
+    
+    <section class="about-description">
+        <h3>What is PetVaxHK?</h3>
+        <p>PetVaxHK is a local-first pet vaccination tracker designed specifically for Hong Kong pet owners. It helps you:</p>
+        <ul>
+            <li>Track vaccination records for your pets</li>
+            <li>Receive timely reminders for upcoming vaccinations</li>
+            <li>Stay compliant with Hong Kong AFCD regulations</li>
+            <li>Find registered vet clinics in Hong Kong</li>
+        </ul>
+    </section>
+    
+    <section class="about-features">
+        <h3>Features</h3>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h4>🐕 Pet Management</h4>
+                <p>Add and manage multiple pets with full vaccination history</p>
+            </div>
+            <div class="feature-card">
+                <h4>💉 Vaccine Tracking</h4>
+                <p>Track all vaccinations with automatic due date calculations</p>
+            </div>
+            <div class="feature-card">
+                <h4>⏰ Smart Reminders</h4>
+                <p>Get notified before vaccinations are due</p>
+            </div>
+            <div class="feature-card">
+                <h4>✅ Compliance Check</h4>
+                <p>Verify your pets meet HK vaccination requirements</p>
+            </div>
+            <div class="feature-card">
+                <h4>🏥 Clinic Directory</h4>
+                <p>Browse registered vet clinics in Hong Kong</p>
+            </div>
+            <div class="feature-card">
+                <h4>📤 Export/Import</h4>
+                <p>Backup and restore your data easily</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="about-regulations">
+        <h3>Hong Kong Vaccination Requirements</h3>
+        <p>PetVaxHK helps you comply with AFCD (Agriculture, Fisheries and Conservation Department) regulations:</p>
+        
+        <div class="reg-info">
+            <h4>Dogs</h4>
+            <ul>
+                <li><strong>Rabies vaccination:</strong> Required annually for all dogs over 5 months</li>
+                <li><strong>DHPP:</strong> Recommended for protection against distemper, hepatitis, parvo, parainfluenza</li>
+                <li><strong>Dog licence:</strong> Must be obtained within 5 months of vaccination</li>
+            </ul>
+        </div>
+        
+        <div class="reg-info">
+            <h4>Cats</h4>
+            <ul>
+                <li><strong>Rabies vaccination:</strong> Required for imported cats</li>
+                <li><strong>FVRCP:</strong> Recommended for all cats (Feline Viral Rhinotracheitis, Calicivirus, Panleukopenia)</li>
+            </ul>
+        </div>
+        
+        <p class="reg-note">⚠️ For import requirements, please check the AFCD website for the latest quarantine and vaccination rules based on your country of origin.</p>
+    </section>
+    
+    <section class="about-contact">
+        <h3>Support</h3>
+        <p>For issues or suggestions, please contact your system administrator.</p>
+        <p class="about-links">
+            <a href="https://www.afcd.gov.hk" target="_blank">AFCD Website</a> |
+            <a href="{{ url_for('main.settings') }}">Settings</a>
+        </p>
+    </section>
+    
+    <section class="about-tech">
+        <h3>Technology</h3>
+        <p>Built with Python, Flask, and SQLite. Designed for local-first operation with optional cloud sync.</p>
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Add Vaccination - PetVaxHK{% endblock %}
+
+{% block content %}
+<h1>Record Vaccination</h1>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="pet_id">Pet *</label>
+        <select id="pet_id" name="pet_id" required>
+            <option value="">Select pet</option>
+            {% for pet in pets %}
+            <option value="{{ pet.id }}" {% if request.args.get('pet_id') == pet.id|string %}selected{% endif %}>{{ pet.name }} ({{ pet.species }})</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="vaccine_id">Vaccine *</label>
+        <select id="vaccine_id" name="vaccine_id" required>
+            <option value="">Select vaccine</option>
+            {% for vaccine in vaccines %}
+            <option value="{{ vaccine.id }}">{{ vaccine.name }} ({{ vaccine.code }})</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="date_administered">Date Administered *</label>
+        <input type="date" id="date_administered" name="date_administered" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="due_date">Due Date (next vaccination)</label>
+        <input type="date" id="due_date" name="due_date">
+    </div>
+    
+    <div class="form-group">
+        <label for="vet_clinic_id">Veterinary Clinic</label>
+        <select id="vet_clinic_id" name="vet_clinic_id">
+            <option value="">Select clinic</option>
+            {% for clinic in clinics %}
+            <option value="{{ clinic.id }}">{{ clinic.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="batch_number">Batch Number</label>
+        <input type="text" id="batch_number" name="batch_number">
+    </div>
+    
+    <div class="form-group">
+        <label for="notes">Notes</label>
+        <textarea id="notes" name="notes" rows="3"></textarea>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Record Vaccination</button>
+    <a href="{{ url_for('main.index') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

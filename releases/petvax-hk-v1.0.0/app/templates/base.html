@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PetVaxHK{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-brand">
+                <a href="{{ url_for('main.index') }}">🐾 PetVaxHK</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="{{ url_for('main.index') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('main.pets_list') }}">Pets</a></li>
+                <li><a href="{{ url_for('main.vaccines_list') }}">Vaccines</a></li>
+                <li><a href="{{ url_for('main.reminders_list') }}">Reminders</a></li>
+                <li><a href="{{ url_for('main.compliance_list') }}">Compliance</a></li>
+                <li><a href="{{ url_for('main.clinics_list') }}">Clinics</a></li>
+                <li><a href="{{ url_for('main.settings') }}">Settings</a></li>
+                <li><a href="{{ url_for('main.about') }}">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer>
+        <p>PetVaxHK - Pet Vaccine Tracker for Hong Kong</p>
+    </footer>
+</body>
+</html>

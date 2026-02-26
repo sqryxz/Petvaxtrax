@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Vaccines - PetVaxHK{% endblock %}
+
+{% block content %}
+<h1>Vaccine Types</h1>
+
+<div class="section-header">
+    <p>Available vaccine types for Hong Kong</p>
+    <a href="{{ url_for('main.vaccines_add') }}" class="btn btn-primary">Add Vaccine</a>
+</div>
+
+{% if vaccines %}
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Species</th>
+            <th>Validity (months)</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for vaccine in vaccines %}
+        <tr>
+            <td><strong>{{ vaccine.code }}</strong></td>
+            <td><a href="{{ url_for('main.vaccines_detail', vaccine_id=vaccine.id) }}">{{ vaccine.name }}</a></td>
+            <td>{{ vaccine.species|title }}</td>
+            <td>{{ vaccine.valid_months or '-' }}</td>
+            <td>{{ vaccine.description or '-' }}</td>
+            <td>
+                <a href="{{ url_for('main.vaccines_detail', vaccine_id=vaccine.id) }}" class="btn btn-sm">View</a>
+                <a href="{{ url_for('main.vaccines_edit', vaccine_id=vaccine.id) }}" class="btn btn-sm">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="empty-state">No vaccines defined yet.</p>
+{% endif %}
+{% endblock %}

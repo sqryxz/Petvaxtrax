@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Edit {{ vaccine.name }} - PetVaxHK{% endblock %}
+
+{% block content %}
+<h1>Edit Vaccine</h1>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="name">Vaccine Name *</label>
+        <input type="text" id="name" name="name" value="{{ vaccine.name }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="code">Code *</label>
+        <input type="text" id="code" name="code" value="{{ vaccine.code }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="species">Species *</label>
+        <select id="species" name="species" required>
+            <option value="dog" {% if vaccine.species == 'dog' %}selected{% endif %}>Dog</option>
+            <option value="cat" {% if vaccine.species == 'cat' %}selected{% endif %}>Cat</option>
+            <option value="both" {% if vaccine.species == 'both' %}selected{% endif %}>Both</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="3">{{ vaccine.description or '' }}</textarea>
+    </div>
+    
+    <div class="form-group">
+        <label for="valid_months">Validity Period (months)</label>
+        <input type="number" id="valid_months" name="valid_months" min="1" value="{{ vaccine.valid_months or '' }}">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a href="{{ url_for('main.vaccines_detail', vaccine_id=vaccine.id) }}" class="btn btn-secondary">Cancel</a>
+</form>
+
+<div class="delete-section">
+    <h3>Delete Vaccine</h3>
+    <p>Warning: This will permanently delete this vaccine type.</p>
+    <form method="POST" action="{{ url_for('main.vaccines_delete', vaccine_id=vaccine.id) }}" onsubmit="return confirm('Are you sure you want to delete this vaccine?');">
+        <button type="submit" class="btn btn-danger">Delete Vaccine</button>
+    </form>
+</div>
+{% endblock %}

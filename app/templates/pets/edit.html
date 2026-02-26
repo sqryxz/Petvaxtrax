@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Edit {{ pet.name }} - PetVaxHK{% endblock %}
+
+{% block content %}
+<h1>Edit Pet</h1>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="name">Pet Name *</label>
+        <input type="text" id="name" name="name" value="{{ pet.name }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="species">Species *</label>
+        <select id="species" name="species" required>
+            <option value="dog" {% if pet.species == 'dog' %}selected{% endif %}>Dog</option>
+            <option value="cat" {% if pet.species == 'cat' %}selected{% endif %}>Cat</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="breed">Breed</label>
+        <input type="text" id="breed" name="breed" value="{{ pet.breed or '' }}">
+    </div>
+    
+    <div class="form-group">
+        <label for="date_of_birth">Date of Birth</label>
+        <input type="date" id="date_of_birth" name="date_of_birth" value="{{ pet.date_of_birth or '' }}">
+    </div>
+    
+    <div class="form-group">
+        <label for="microchip_number">Microchip Number</label>
+        <input type="text" id="microchip_number" name="microchip_number" value="{{ pet.microchip_number or '' }}">
+    </div>
+    
+    <div class="form-group">
+        <label for="owner_name">Owner Name</label>
+        <input type="text" id="owner_name" name="owner_name" value="{{ pet.owner_name or '' }}">
+    </div>
+    
+    <div class="form-group">
+        <label for="owner_contact">Owner Contact</label>
+        <input type="text" id="owner_contact" name="owner_contact" value="{{ pet.owner_contact or '' }}">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a href="{{ url_for('main.pets_detail', pet_id=pet.id) }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

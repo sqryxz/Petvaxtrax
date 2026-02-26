@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Settings - PetVaxHK{% endblock %}
+
+{% block content %}
+<div class="settings-page">
+    <h1>Settings</h1>
+    
+    <section class="settings-section">
+        <h2>General Preferences</h2>
+        <form method="post" action="{{ url_for('main.settings_update') }}">
+            <div class="form-group">
+                <label for="language">Language / 語言</label>
+                <select id="language" name="language" class="form-control">
+                    <option value="en" {% if settings.language == 'en' %}selected{% endif %}>English</option>
+                    <option value="zh" {% if settings.language == 'zh' %}selected{% endif %}>繁體中文 (Traditional Chinese)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="timezone">Timezone</label>
+                <select id="timezone" name="timezone" class="form-control">
+                    <option value="Asia/Hong_Kong" {% if settings.timezone == 'Asia/Hong_Kong' %}selected{% endif %}>Hong Kong (GMT+8)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="date_format">Date Format</label>
+                <select id="date_format" name="date_format" class="form-control">
+                    <option value="YYYY-MM-DD" {% if settings.date_format == 'YYYY-MM-DD' %}selected{% endif %}>YYYY-MM-DD (2026-02-26)</option>
+                    <option value="DD/MM/YYYY" {% if settings.date_format == 'DD/MM/YYYY' %}selected{% endif %}>DD/MM/YYYY (26/02/2026)</option>
+                    <option value="MM/DD/YYYY" {% if settings.date_format == 'MM/DD/YYYY' %}selected{% endif %}>MM/DD/YYYY (02/26/2026)</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Save Settings</button>
+        </form>
+    </section>
+    
+    <section class="settings-section">
+        <h2>Notification Preferences</h2>
+        <form method="post" action="{{ url_for('main.settings_update') }}">
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="email_reminders" {% if settings.email_reminders %}checked{% endif %}>
+                    Enable email reminders
+                </label>
+                <p class="help-text">Receive email notifications for upcoming vaccination reminders</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="reminder_days_before">Remind days before due</label>
+                <input type="number" id="reminder_days_before" name="reminder_days_before" 
+                       class="form-control" value="{{ settings.reminder_days_before or 7 }}" min="1" max="30">
+                <p class="help-text">How many days before a vaccination is due should we remind you?</p>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Save Preferences</button>
+        </form>
+    </section>
+    
+    <section class="settings-section">
+        <h2>Data Management</h2>
+        <div class="settings-actions">
+            <p class="help-text">Use the CLI to export/import data: <code>python -m app.cli export -f json</code></p>
+        </div>
+    </section>
+    
+    <section class="settings-section">
+        <h2>About</h2>
+        <p><strong>PetVaxHK</strong> - Pet Vaccine Tracker for Hong Kong</p>
+        <p>Version: 1.0.0</p>
+        <p>Built for Hong Kong pet owners to track vaccinations and comply with AFCD regulations.</p>
+    </section>
+</div>
+{% endblock %}

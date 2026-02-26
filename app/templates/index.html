@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - PetVaxHK{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h1>Dashboard</h1>
+    
+    <section class="stats">
+        <div class="stat-card">
+            <h3>Total Pets</h3>
+            <p class="stat-number">{{ pets|length }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Upcoming Reminders</h3>
+            <p class="stat-number">{{ upcoming_reminders|length }}</p>
+        </div>
+        <div class="stat-card stat-warning">
+            <h3>Overdue</h3>
+            <p class="stat-number">{{ overdue_reminders|length }}</p>
+        </div>
+    </section>
+    
+    {% if overdue_reminders %}
+    <section class="alerts">
+        <h2>⚠️ Overdue Reminders</h2>
+        <div class="alert-list">
+            {% for reminder in overdue_reminders %}
+            <div class="alert alert-danger">
+                <strong>{{ reminder.pet.name }}</strong> - {{ reminder.vaccine.name if reminder.vaccine else 'Vaccination' }} is overdue
+                <form action="{{ url_for('main.reminders_complete', reminder_id=reminder.id) }}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-small">Mark Done</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+    
+    <section class="pets-overview">
+        <div class="section-header">
+            <h2>My Pets</h2>
+            <a href="{{ url_for('main.pets_add') }}" class="btn btn-primary">Add Pet</a>
+        </div>
+        
+        {% if pets %}
+        <div class="pet-cards">
+            {% for pet in pets %}
+            <div class="pet-card">
+                <h3>{{ pet.name }}</h3>
+                <p class="pet-info">{{ pet.species|title }} - {{ pet.breed or 'Unknown breed' }}</p>
+                <p class="pet-owner">Owner: {{ pet.owner_name or 'Not specified' }}</p>
+                <a href="{{ url_for('main.pets_detail', pet_id=pet.id) }}" class="btn btn-secondary">View Details</a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="empty-state">No pets added yet. <a href="{{ url_for('main.pets_add') }}">Add your first pet!</a></p>
+        {% endif %}
+    </section>
+    
+    <section class="upcoming-reminders">
+        <div class="section-header">
+            <h2>Upcoming Reminders</h2>
+            <a href="{{ url_for('main.reminders_list') }}" class="btn btn-secondary">View All</a>
+        </div>
+        
+        {% if upcoming_reminders %}
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Pet</th>
+                    <th>Vaccine</th>
+                    <th>Due Date</th>
+                    <th>Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reminder in upcoming_reminders %}
+                <tr>
+                    <td>{{ reminder.pet.name }}</td>
+                    <td>{{ reminder.vaccine.name if reminder.vaccine else 'N/A' }}</td>
+                    <td>{{ reminder.due_date }}</td>
+                    <td><span class="badge badge-{{ reminder.reminder_type }}">{{ reminder.reminder_type }}</span></td>
+                    <td>
+                        <form action="{{ url_for('main.reminders_complete', reminder_id=reminder.id) }}" method="post">
+                            <button type="submit" class="btn btn-small">Done</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="empty-state">No upcoming reminders.</p>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}

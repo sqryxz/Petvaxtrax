@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "language": "en",
+    "locale": "en-HK",
+    "language_name": "English",
+    "created": "2026-02-26"
+  },
+  "ui": {
+    "app_name": "PetVaxHK",
+    "app_tagline": "Pet Vaccination Tracker for Hong Kong",
+    "menu": {
+      "pets": "Pets",
+      "vaccines": "Vaccines",
+      "reminders": "Reminders",
+      "settings": "Settings",
+      "help": "Help"
+    },
+    "buttons": {
+      "add": "Add",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "search": "Search",
+      "export": "Export",
+      "import": "Import"
+    },
+    "messages": {
+      "no_pets": "No pets registered yet",
+      "no_vaccines": "No vaccination records",
+      "confirm_delete": "Are you sure you want to delete this?",
+      "saved_successfully": "Saved successfully",
+      "deleted_successfully": "Deleted successfully",
+      "error_occurred": "An error occurred"
+    }
+  },
+  "pet": {
+    "species": {
+      "label": "Species",
+      "dog": "Dog",
+      "cat": "Cat"
+    },
+    "name": {
+      "label": "Pet Name"
+    },
+    "breed": {
+      "label": "Breed",
+      "unknown": "Unknown"
+    },
+    "date_of_birth": {
+      "label": "Date of Birth"
+    },
+    "gender": {
+      "label": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "unknown": "Unknown"
+    },
+    "colour": {
+      "label": "Colour"
+    },
+    "microchip": {
+      "label": "Microchip Number"
+    },
+    "license_number": {
+      "label": "Licence Number"
+    }
+  },
+  "vaccine": {
+    "type": {
+      "label": "Vaccine Type"
+    },
+    "date_administered": {
+      "label": "Date Administered"
+    },
+    "date_due": {
+      "label": "Next Due Date"
+    },
+    "batch_number": {
+      "label": "Batch Number"
+    },
+    "vet_clinic": {
+      "label": "Veterinary Clinic"
+    },
+    "vet_name": {
+      "label": "Veterinarian"
+    },
+    "notes": {
+      "label": "Notes"
+    }
+  },
+  "vaccines": {
+    "dog": {
+      "dhpp": "DHPP (Distemper, Hepatitis, Parvovirus, Parainfluenza)",
+      "rabies": "Rabies",
+      "bordetella": "Bordetella (Kennel Cough)",
+      "leptospirosis": "Leptospirosis",
+      "canine_influenza": "Canine Influenza"
+    },
+    "cat": {
+      "fvr": "FVR (Feline Viral Rhinotracheitis)",
+      "fcv": "FCV (Feline Calicivirus)",
+      "fpv": "FPV (Feline Panleukopenia)",
+      "rabies": "Rabies",
+      "felv": "FeLV (Feline Leukemia)"
+    }
+  },
+  "reminders": {
+    "upcoming": "Upcoming Vaccinations",
+    "overdue": "Overdue",
+    "due_soon": "Due Soon",
+    "days_until_due": "{days} days until due",
+    "overdue_by": "Overdue by {days} days"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalid_date": "Please enter a valid date",
+    "future_date": "Date cannot be in the future",
+    "invalid_microchip": "Invalid microchip format (15 digits)"
+  }
+}
